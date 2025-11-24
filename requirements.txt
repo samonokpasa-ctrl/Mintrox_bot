@@ -1,5 +1,5 @@
-pyTelegramBotAPI
-feedparser
-requests
-gspread
-oauth2client
+Flask==2.3.3
+pyTelegramBotAPI==4.12.0
+feedparser==6.0.12
+supabase==3.6.0
+requests==2.32.4
