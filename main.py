@@ -1,39 +1,3 @@
-import time
-import threading
-from datetime import datetime, timezone
-import feedparser
-import telebot
-from supabase import create_client
-from flask import Flask, request
-import os
-import requests
-
-# ------------------- CONFIG -------------------
-TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN", "8374495248:AAECvxzEgHxYRV3VhKC2LpH8rlNVBktRf6Q")
-USER_CHAT_ID = int(os.environ.get("USER_CHAT_ID", "1168907278"))
-
-# ------------------- SUPABASE SETUP -------------------
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "https://nbyzjrrgmgfvgkhftydv.supabase.co")
-SUPABASE_KEY = os.environ.get("SUPABASE_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ieXpqcnJnbWdmdmdraGZ0eWR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5OTQwMTAsImV4cCI6MjA3OTU3MDAxMH0.BUs7AgjjBtq1vDNClvqAjUZRMLjbrfNOAGpA0UPtyWk")
-TABLE_NAME = "sent_posts"
-
-supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
-bot = telebot.TeleBot(TELEGRAM_TOKEN)
-
-# ------------------- TEST FEEDS -------------------
-TEST_FEEDS = [
-    "https://venturebeat.com/category/ai/feed/",
-    "https://techcrunch.com/tag/artificial-intelligence/feed/",
-    "https://www.techmeme.com/feed.xml",
-    "https://www.theverge.com/tech/rss/index.xml",
-    "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml",  # Adding reliable test feed
-    "https://feeds.bbci.co.uk/news/technology/rss.xml"  # Another reliable feed
-]
-
-# ------------------- FEED TESTER -------------------
-def test_feeds():
-    """Test all feeds and report status"""
-    print("\n" + "="*60)
     print("🔬 TESTING RSS FEEDS")
     print("="*60)
     
